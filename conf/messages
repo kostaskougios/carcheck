@@ -2,3 +2,4 @@ start.now = Start Now
 reg.number = Registration number
 vehicle.make = Vehicle make
 invalid.reg.number = Registration number is invalid
+search.results = Search Results

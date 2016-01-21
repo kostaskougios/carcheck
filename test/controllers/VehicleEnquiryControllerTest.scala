@@ -27,4 +27,28 @@ class VehicleEnquiryControllerTest extends FunSuite
 		}
 	}
 
+	test("make can't be empty") {
+		running(FakeApplication()) {
+			val form = route(FakeRequest(POST, "/vehicle-enquiry").withBody(
+				Map(
+					"registrationNumber" -> Seq("AB51DVL"),
+					"vehicleMake" -> Seq("")
+				)
+			)).get
+			contentAsString(form) should include("This field is required")
+		}
+	}
+
+	test("positive") {
+		running(FakeApplication()) {
+			val form = route(FakeRequest(POST, "/vehicle-enquiry").withBody(
+				Map(
+					"registrationNumber" -> Seq("AB51DVL"),
+					"vehicleMake" -> Seq("Volvo")
+				)
+			)).get
+			contentAsString(form) should include("Search Results")
+		}
+	}
+
 }

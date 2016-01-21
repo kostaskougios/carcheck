@@ -28,8 +28,9 @@ class VehicleEnquiryController @Inject()(val messagesApi: MessagesApi)
 			errorForm => {
 				Ok(views.html.vehicleEnquiry(errorForm))
 			},
-			person => {
-				Redirect(routes.VehicleEnquiryController.searchBegin)
+			form => {
+				// Note: we might want to redirect here to avoid re-posts
+				Ok(views.html.vehicleEnquirySearchResults(form))
 			}
 		)
 	}
