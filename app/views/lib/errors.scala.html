@@ -1,0 +1,8 @@
+@* <!-- @formatter:off --> *@
+@(field:Field)(implicit messages: Messages)
+
+@for(error<-field.errors) {
+	@for(msg <- error.messages) {
+		<em>@messages(msg)</em>
+	}
+}

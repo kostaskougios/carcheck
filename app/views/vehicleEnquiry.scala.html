@@ -2,13 +2,7 @@
 
 @(vef: Form[VehicleEnquiryForm])(implicit messages: Messages)
 
-@renderErrors(field:Field) = {
-	@for(error<-field.errors) {
-		@for(msg <- error.messages) {
-			<em>@messages(msg)</em>
-		}
-	}
-}
+@import lib._
 
 @main {
 
@@ -19,11 +13,11 @@
 	<label for="registrationNumber">@messages("reg.number")</label>
 
 	<input type="text" id="registrationNumber" name="registrationNumber" value="@vef("registrationNumber").value"/>
-	@renderErrors(vef("registrationNumber"))
+	@errors(vef("registrationNumber"))
 
 	<label for="vehicleMake">@messages("vehicle.make")</label>
 	<input type="text" id="vehicleMake" name="vehicleMake" value="@vef("vehicleMake").value"/>
-	@renderErrors(vef("vehicleMake"))
+	@errors(vef("vehicleMake"))
 
 	<input type="submit" value="Search"/>
 
