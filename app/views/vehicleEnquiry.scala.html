@@ -2,19 +2,29 @@
 
 @(vef: Form[VehicleEnquiryForm])
 
+@renderErrors(field:Field) = {
+ERROR:@field.errors.size
+	@for(error<-field.errors) {
+		<em>@error</em>
+	}
+}
+
 @main {
 
 @*** Note: I prefer html instead of the helper._ helper methods **@
 
 <form action="@routes.VehicleEnquiryController.search()" method="POST">
 
+	@vef("registrationNumber")
+	<br/><br/>
 	<label for="registrationNumber">Registration number</label>
 
 	<input type="text" id="registrationNumber" name="registrationNumber" value="@vef("registrationNumber").value"/>
+	@renderErrors(vef("registrationNumber"))
 
 	<label for="vehicleMake">Vehicle make</label>
 	<input type="text" id="vehicleMake" name="vehicleMake" value="@vef("vehicleMake").value"/>
-
+	@renderErrors(vef("vehicleMake"))
 
 	<input type="submit" value="Search"/>
 

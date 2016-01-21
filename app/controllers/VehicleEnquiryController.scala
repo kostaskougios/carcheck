@@ -9,8 +9,8 @@ class VehicleEnquiryController extends Controller
 
 	val vehicleEnquiryForm: Form[VehicleEnquiryForm] = Form {
 		mapping(
-			"name" -> nonEmptyText,
-			"age" -> nonEmptyText
+			"registrationNumber" -> nonEmptyText,
+			"vehicleMake" -> nonEmptyText
 		)(VehicleEnquiryForm.apply)(VehicleEnquiryForm.unapply)
 	}
 
