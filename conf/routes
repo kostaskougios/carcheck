@@ -3,7 +3,8 @@
 # ~~~~
 
 # Home page
-GET     /						controllers.VehicleEnquiryController.index
+GET     /						controllers.IndexController.index
+GET     /vehicle-enquiry		controllers.VehicleEnquiryController.searchBegin
 POST    /vehicle-enquiry		controllers.VehicleEnquiryController.search
 
 # Map static resources from the /public folder to the /assets URL path

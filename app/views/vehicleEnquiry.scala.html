@@ -1,0 +1,21 @@
+@(vef: Form[VehicleEnquiryForm])
+
+@main {
+
+@*** Note: I prefer html instead of the helper._ helper methods **@
+
+<form action="@routes.VehicleEnquiryController.search()" method="POST">
+
+	<label for="registrationNumber">Registration number</label>
+
+	<input type="text" id="registrationNumber" name="registrationNumber" value="@vef(" registrationNumber").value"/>
+
+	<label for="vehicleMake">Vehicle make</label>
+	<input type="text" id="vehicleMake" name="vehicleMake" value="@vef(" vehicleMake").value"/>
+
+
+	<input type="submit" value="Search"/>
+
+</form>
+
+}
