@@ -7,20 +7,34 @@
 @main {
 
 @*** Note: I prefer html instead of the helper._ helper methods **@
-
 <form action="@routes.VehicleEnquiryController.search()" method="POST">
 
-	<label for="registrationNumber">@messages("reg.number")</label>
+	@** these divs are copied from your actual site - just to make it look the same **@
+	<div class="input-block">
+		<div class="input-block-label strong">
+			<label for="registrationNumber">@messages("reg.number")</label>
+		</div>
 
-	<input type="text" id="registrationNumber" name="registrationNumber" value="@vef("registrationNumber").value"/>
+		<div class="input-block-textbox">
+			<input type="text" class="input-large input-upper" id="registrationNumber" name="registrationNumber" value="@vef("registrationNumber").value"/>
+		</div>
+	</div>
+
 	@errors(vef("registrationNumber"))
 
-	<label for="vehicleMake">@messages("vehicle.make")</label>
-	<input type="text" id="vehicleMake" name="vehicleMake" value="@vef("vehicleMake").value"/>
-	@errors(vef("vehicleMake"))
+	<div class="input-block">
+		<div class="input-block-label strong">
+			<label for="vehicleMake">@messages("vehicle.make")</label>
+		</div>
+		<div class="input-block-textbox">
+			<input type="text" id="vehicleMake" name="vehicleMake" value="@vef("vehicleMake").value"/>
+		</div>
+		@errors(vef("vehicleMake"))
+	</div>
 
-	<input type="submit" value="Search"/>
+	<div class="action">
+		<input type="submit" class="button">
+	</div>
 
 </form>
-
 }

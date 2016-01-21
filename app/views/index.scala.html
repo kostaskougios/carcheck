@@ -2,7 +2,5 @@
 @()(implicit messages: Messages)
 @main {
 
-	<a href="@routes.VehicleEnquiryController.searchBegin">
-		@messages("start.now")
-	</a>
+	<a role="button" class="button" href="@routes.VehicleEnquiryController.searchBegin">@messages("start.now")</a>
 }
