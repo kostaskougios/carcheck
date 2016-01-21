@@ -20,4 +20,11 @@ class VehicleEnquiryControllerTest extends FunSuite
 		}
 	}
 
+	test("invalid vehicle registration number") {
+		running(FakeApplication()) {
+			val form = route(FakeRequest(POST, "/vehicle-enquiry").withBody(Map("registrationNumber" -> Seq("AZ01DLQ")))).get
+			contentAsString(form) should include("Registration number is invalid")
+		}
+	}
+
 }
