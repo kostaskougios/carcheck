@@ -6,6 +6,8 @@ import models.Vehicle
 import service.VehicleEnquiryService
 
 /**
+  * An in-memory sample impl of the VehicleEnquiryService
+  *
   * @author kostas.kougios
   *         Date: 21/01/16
   */

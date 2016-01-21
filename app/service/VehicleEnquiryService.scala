@@ -5,6 +5,8 @@ import models.Vehicle
 import service.impl.InMemoryVehicleEnquiryService
 
 /**
+  * Searches for vehicles.
+  *
   * @author kostas.kougios
   *         Date: 21/01/16
   */
