@@ -1,11 +1,14 @@
 package service
 
+import com.google.inject.ImplementedBy
 import models.Vehicle
+import service.impl.InMemoryVehicleEnquiryService
 
 /**
   * @author kostas.kougios
   *         Date: 21/01/16
   */
+@ImplementedBy(classOf[InMemoryVehicleEnquiryService])
 trait VehicleEnquiryService
 {
 	/**

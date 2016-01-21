@@ -7,8 +7,9 @@ import play.api.data.Form
 import play.api.data.Forms._
 import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc._
+import service.VehicleEnquiryService
 
-class VehicleEnquiryController @Inject()(val messagesApi: MessagesApi)
+class VehicleEnquiryController @Inject()(val messagesApi: MessagesApi, vehicleEnquiryService: VehicleEnquiryService)
 	extends Controller with I18nSupport
 {
 
@@ -30,7 +31,8 @@ class VehicleEnquiryController @Inject()(val messagesApi: MessagesApi)
 			},
 			form => {
 				// Note: we might want to redirect here to avoid re-posts
-				Ok(views.html.vehicleEnquirySearchResults(form))
+				val searchResults = vehicleEnquiryService.search(form.registrationNumber, form.vehicleMake)
+				Ok(views.html.vehicleEnquirySearchResults(searchResults))
 			}
 		)
 	}

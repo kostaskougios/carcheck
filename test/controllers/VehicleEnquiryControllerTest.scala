@@ -39,7 +39,7 @@ class VehicleEnquiryControllerTest extends FunSuite
 		}
 	}
 
-	test("positive") {
+	test("vehicle not found") {
 		running(FakeApplication()) {
 			val form = route(FakeRequest(POST, "/vehicle-enquiry").withBody(
 				Map(
@@ -48,6 +48,22 @@ class VehicleEnquiryControllerTest extends FunSuite
 				)
 			)).get
 			contentAsString(form) should include("Search Results")
+			contentAsString(form) should include("Vehicle not found")
+		}
+	}
+
+	test("vehicle found") {
+		running(FakeApplication()) {
+			val form = route(FakeRequest(POST, "/vehicle-enquiry").withBody(
+				Map(
+					"registrationNumber" -> Seq("BD51 SMR"),
+					"vehicleMake" -> Seq("Volvo")
+				)
+			)).get
+			contentAsString(form) should include("Search Results")
+			contentAsString(form) should include("BD51 SMR")
+			contentAsString(form) should include("Volvo")
+			contentAsString(form) should include("Kostas car")
 		}
 	}
 

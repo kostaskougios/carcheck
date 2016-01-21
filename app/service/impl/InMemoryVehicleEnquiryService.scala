@@ -1,5 +1,6 @@
 package service.impl
 
+import com.google.inject.Singleton
 import constraints.VehicleRegistrationNumber
 import models.Vehicle
 import service.VehicleEnquiryService
@@ -8,6 +9,7 @@ import service.VehicleEnquiryService
   * @author kostas.kougios
   *         Date: 21/01/16
   */
+@Singleton
 class InMemoryVehicleEnquiryService extends VehicleEnquiryService
 {
 	private val vehicles = Seq(

@@ -1,8 +1,25 @@
 @* <!-- @formatter:off --> *@
 
-@(vef: VehicleEnquiryForm)(implicit messages: Messages)
+@(vehicleO: Option[Vehicle])(implicit messages: Messages)
 
 @main {
 	@messages("search.results")
 
+	@if(vehicleO.isEmpty) {
+		<em>Vehicle not found</em>
+	} else {
+		@defining(vehicleO.get) { vehicle=>
+		<ul>
+			<li>
+				@vehicle.registrationNumber
+			</li>
+			<li>
+				@vehicle.make
+			</li>
+			<li>
+				@vehicle.details
+			</li>
+		</ul>
+		}
+	}
 }
