@@ -2,6 +2,7 @@ package controllers
 
 import javax.inject.Inject
 
+import constraints.VehicleRegistrationNumber
 import play.api.data.Form
 import play.api.data.Forms._
 import play.api.i18n.{I18nSupport, MessagesApi}
@@ -13,7 +14,7 @@ class VehicleEnquiryController @Inject()(val messagesApi: MessagesApi)
 
 	val vehicleEnquiryForm: Form[VehicleEnquiryForm] = Form {
 		mapping(
-			"registrationNumber" -> nonEmptyText,
+			"registrationNumber" -> nonEmptyText.verifying(VehicleRegistrationNumber.constraint),
 			"vehicleMake" -> nonEmptyText
 		)(VehicleEnquiryForm.apply)(VehicleEnquiryForm.unapply)
 	}
