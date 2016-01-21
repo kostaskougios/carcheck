@@ -1,0 +1,15 @@
+@(vef: Form[VehicleEnquiryForm])(implicit messages: Messages)
+
+@import helper._
+
+@main("Welcome to Play") {
+
+@form(routes.VehicleEnquiryController.search()) {
+@inputText(vef("registrationNumber"))
+@inputText(vef("vehicleMake"))
+
+		<div class="buttons">
+			<input type="submit" value="Search"/>
+		</div>
+}
+}
