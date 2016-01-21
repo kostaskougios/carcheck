@@ -4,7 +4,9 @@
 
 @renderErrors(field:Field) = {
 	@for(error<-field.errors) {
-		<em>@error</em>
+		@for(msg <- error.messages) {
+			<em>@messages(msg)</em>
+		}
 	}
 }
 
@@ -14,8 +16,6 @@
 
 <form action="@routes.VehicleEnquiryController.search()" method="POST">
 
-	@vef("registrationNumber")
-	<br/><br/>
 	<label for="registrationNumber">@messages("reg.number")</label>
 
 	<input type="text" id="registrationNumber" name="registrationNumber" value="@vef("registrationNumber").value"/>
