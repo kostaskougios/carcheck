@@ -1,9 +1,8 @@
 @* <!-- @formatter:off --> *@
 
-@(vef: Form[VehicleEnquiryForm])
+@(vef: Form[VehicleEnquiryForm])(implicit messages: Messages)
 
 @renderErrors(field:Field) = {
-ERROR:@field.errors.size
 	@for(error<-field.errors) {
 		<em>@error</em>
 	}
@@ -17,12 +16,12 @@ ERROR:@field.errors.size
 
 	@vef("registrationNumber")
 	<br/><br/>
-	<label for="registrationNumber">Registration number</label>
+	<label for="registrationNumber">@messages("reg.number")</label>
 
 	<input type="text" id="registrationNumber" name="registrationNumber" value="@vef("registrationNumber").value"/>
 	@renderErrors(vef("registrationNumber"))
 
-	<label for="vehicleMake">Vehicle make</label>
+	<label for="vehicleMake">@messages("vehicle.make")</label>
 	<input type="text" id="vehicleMake" name="vehicleMake" value="@vef("vehicleMake").value"/>
 	@renderErrors(vef("vehicleMake"))
 

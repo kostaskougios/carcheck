@@ -1,10 +1,14 @@
 package controllers
 
+import javax.inject.Inject
+
 import play.api.data.Form
 import play.api.data.Forms._
+import play.api.i18n.{I18nSupport, MessagesApi}
 import play.api.mvc._
 
-class VehicleEnquiryController extends Controller
+class VehicleEnquiryController @Inject()(val messagesApi: MessagesApi)
+	extends Controller with I18nSupport
 {
 
 	val vehicleEnquiryForm: Form[VehicleEnquiryForm] = Form {

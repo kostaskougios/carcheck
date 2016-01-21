@@ -1,6 +1,8 @@
 @* <!-- @formatter:off --> *@
-
+@()(implicit messages: Messages)
 @main {
 
-	<a href="@routes.VehicleEnquiryController.searchBegin">Start Now</a>
+	<a href="@routes.VehicleEnquiryController.searchBegin">
+		@messages("start.now")
+	</a>
 }
