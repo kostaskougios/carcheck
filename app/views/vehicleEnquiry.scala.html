@@ -1,3 +1,5 @@
+@* <!-- @formatter:off --> *@
+
 @(vef: Form[VehicleEnquiryForm])
 
 @main {
@@ -8,10 +10,10 @@
 
 	<label for="registrationNumber">Registration number</label>
 
-	<input type="text" id="registrationNumber" name="registrationNumber" value="@vef(" registrationNumber").value"/>
+	<input type="text" id="registrationNumber" name="registrationNumber" value="@vef("registrationNumber").value"/>
 
 	<label for="vehicleMake">Vehicle make</label>
-	<input type="text" id="vehicleMake" name="vehicleMake" value="@vef(" vehicleMake").value"/>
+	<input type="text" id="vehicleMake" name="vehicleMake" value="@vef("vehicleMake").value"/>
 
 
 	<input type="submit" value="Search"/>
