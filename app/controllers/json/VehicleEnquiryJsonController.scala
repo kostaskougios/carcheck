@@ -2,12 +2,18 @@ package controllers.json
 
 import javax.inject.Inject
 
+import constraints.VehicleRegistrationNumber
 import play.api.libs.json._
 import play.api.mvc._
 import service.VehicleEnquiryService
 
 /**
   * Serves vehicle enquires via a Rest API
+  *
+  * Try
+  *
+  * curl -H "Content-Type: application/json" -X POST -d '{"registrationNumber":"AB51DVL","vehicleMake":"Fiat"}' http://localhost:9000/api/vehicle-enquiry
+  *
   */
 class VehicleEnquiryJsonController @Inject()(vehicleEnquiryService: VehicleEnquiryService) extends Controller
 {
@@ -15,18 +21,29 @@ class VehicleEnquiryJsonController @Inject()(vehicleEnquiryService: VehicleEnqui
 
 		request.body.validate(FormReads).fold(
 			errors => {
-				BadRequest(Json.obj("status" -> "KO", "message" -> JsError.toJson(errors)))
+				badRequest(JsError.toJson(errors))
 			},
 			form => {
-				vehicleEnquiryService.search(form.registrationNumber, form.vehicleMake) match {
-					case Some(vehicle) =>
-						Ok(Json.toJson(vehicle))
-					case None =>
-						NotFound
+				if (!VehicleRegistrationNumber.isValid(form.registrationNumber)) {
+					badRequest(Json.obj("registrationNumber" -> s"Invalid number ${form.registrationNumber}"))
+				} else {
+					vehicleEnquiryService.search(form.registrationNumber, form.vehicleMake) match {
+						case Some(vehicle) =>
+							Ok(Json.toJson(vehicle))
+						case None =>
+							NotFound
+					}
 				}
 			}
 		)
 	}
+
+	private def badRequest(msg: JsObject) = BadRequest(
+		Json.obj(
+			"status" -> "KO",
+			"message" -> msg
+		)
+	)
 }
 
 

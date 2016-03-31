@@ -33,4 +33,15 @@ class VehicleEnquiryJsonControllerTest extends FunSuite
 		}
 	}
 
+	test("invalid registration number") {
+		running(FakeApplication()) {
+			val result = route(FakeRequest(POST, "/api/vehicle-enquiry").withBody(
+				Json.toJson(VehicleEnquiryForm("BD51_SMX", "Volvo"))
+			)).get
+			status(result) should be(BAD_REQUEST)
+			val json = contentAsJson(result)
+			(json \ "status").as[String] should be("KO")
+			(json \ "message" \ "registrationNumber").as[String] should be("Invalid number BD51_SMX")
+		}
+	}
 }
