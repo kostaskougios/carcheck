@@ -9,8 +9,11 @@ import play.api.libs.json.Json
   */
 package object json
 {
-	implicit val FormReads = Json.reads[VehicleEnquiryForm]
-	implicit val FormWrites = Json.writes[VehicleEnquiryForm]
+	implicit val FormReads = Json.reads[VehicleEnquiry]
+	implicit val FormWrites = Json.writes[VehicleEnquiry]
 	implicit val VehicleReads = Json.reads[Vehicle]
 	implicit val VehicleWrites = Json.writes[Vehicle]
+
+	case class VehicleEnquiry(registrationNumber: String, vehicleMake: String)
+
 }

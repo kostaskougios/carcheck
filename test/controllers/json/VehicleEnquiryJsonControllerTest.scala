@@ -1,6 +1,5 @@
 package controllers.json
 
-import controllers.VehicleEnquiryForm
 import models.Vehicle
 import org.scalatest.FunSuite
 import org.scalatest.Matchers._
@@ -17,7 +16,7 @@ class VehicleEnquiryJsonControllerTest extends FunSuite
 	test("vehicle not found") {
 		running(FakeApplication()) {
 			val result = route(FakeRequest(POST, "/api/vehicle-enquiry").withBody(
-				Json.toJson(VehicleEnquiryForm("BD51 SMX", "Volvo"))
+				Json.toJson(VehicleEnquiry("BD51 SMX", "Volvo"))
 			)).get
 			status(result) should be(NOT_FOUND)
 		}
@@ -26,7 +25,7 @@ class VehicleEnquiryJsonControllerTest extends FunSuite
 	test("vehicle found") {
 		running(FakeApplication()) {
 			val result = route(FakeRequest(POST, "/api/vehicle-enquiry").withBody(
-				Json.toJson(VehicleEnquiryForm("BD51 SMR", "Volvo"))
+				Json.toJson(VehicleEnquiry("BD51 SMR", "Volvo"))
 			)).get
 			val vehicle = Json.fromJson[Vehicle](contentAsJson(result)).get
 			vehicle should be(Vehicle("BD51 SMR", "Volvo", "Kostas car"))
@@ -36,7 +35,7 @@ class VehicleEnquiryJsonControllerTest extends FunSuite
 	test("invalid registration number") {
 		running(FakeApplication()) {
 			val result = route(FakeRequest(POST, "/api/vehicle-enquiry").withBody(
-				Json.toJson(VehicleEnquiryForm("BD51_SMX", "Volvo"))
+				Json.toJson(VehicleEnquiry("BD51_SMX", "Volvo"))
 			)).get
 			status(result) should be(BAD_REQUEST)
 			val json = contentAsJson(result)
