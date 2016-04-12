@@ -1,5 +1,6 @@
 package controllers.json
 
+import controllers.json.schema.VehicleEnquiry
 import models.Vehicle
 import org.scalatest.FunSuite
 import org.scalatest.Matchers._

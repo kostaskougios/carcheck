@@ -1,5 +1,6 @@
 package controllers
 
+import controllers.json.schema.VehicleEnquiry
 import models.Vehicle
 import play.api.libs.json.Json
 
@@ -13,7 +14,5 @@ package object json
 	implicit val FormWrites = Json.writes[VehicleEnquiry]
 	implicit val VehicleReads = Json.reads[Vehicle]
 	implicit val VehicleWrites = Json.writes[Vehicle]
-
-	case class VehicleEnquiry(registrationNumber: String, vehicleMake: String)
 
 }
